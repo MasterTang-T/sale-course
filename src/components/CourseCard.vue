@@ -16,10 +16,20 @@
         <!-- 价格区域 -->
         <div class="flex items-center justify-between">
           <div class="flex items-baseline">
-            <span class="text-2xl font-bold text-primary">¥{{ course.price }}</span>
-            <span class="ml-2 text-sm text-gray-400 line-through" v-if="course.marketPrice">
+            <span class="text-2xl font-bold text-primary" v-if="course.price">¥{{ course.price }}</span>
+            <span class="ml-2 mr-2 text-sm text-gray-400 line-through" v-if="course.marketPrice">
               ¥{{ course.marketPrice }}
             </span>
+            <button
+              v-if="!course.price"
+              @click="$emit('show-contact')"
+              class="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r from-primary to-primary/80 text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              </svg>
+              联系我
+            </button>
           </div>
 
           <!-- 加入购物车按钮 -->

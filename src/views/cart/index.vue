@@ -66,25 +66,43 @@
 				<div class="flex-1">
 					<h3 class="text-lg font-medium text-gray-900">{{ item.goodsName }}</h3>
 					<div class="mt-1 flex items-center space-x-4">
-						<span class="text-primary font-medium">¥{{ item.price }}</span>
+						<template v-if="item.price > 0">
+							<span class="text-primary font-medium">¥{{ item.price }}</span>
+						</template>
+						<template v-else>
+							<button
+								@click="showContactModal = true"
+								class="flex items-center bg-white border border-gray-200 px-4 py-1.5 rounded-full hover:bg-gray-50 transition-all duration-300 shadow-sm group"
+							>
+								<i class="fas fa-phone text-gray-600 group-hover:text-primary transition-colors duration-300"></i>
+								<span class="ml-2 text-gray-600 group-hover:text-primary text-sm font-medium transition-colors duration-300">联系我</span>
+							</button>
+						</template>
 						<span class="text-gray-400 line-through text-sm">¥{{ item.marketPrice }}</span>
 						<span class="text-gray-500 text-sm">{{ item.categoryName }}</span>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- 联系我弹窗 -->
+		<ContactModal v-model="showContactModal" />
 	</div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { House } from '@element-plus/icons-vue'
+import ContactModal from '@/components/ContactModal.vue'
 
 const store = useStore()
 const router = useRouter()
+
+const showContactModal = ref(false)
 
 // 获取购物车商品列表
 const cartItems = computed(() => store.getters['goods/getCartItems'])
