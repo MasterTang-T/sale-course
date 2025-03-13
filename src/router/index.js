@@ -1,23 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView,
-    redirect: '/frontend',
+    redirect: '/frontend'
   },
   {
     path: '/frontend',
-    name: 'frontend',
-    component: () => import(/* webpackChunkName: "frontend" */ '../views/frontend/index.vue'),
+    name: 'Frontend',
+    component: () => import('../views/frontend/index.vue')
   },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/cart/index.vue')
+  }
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.VUE_APP_BASE_URL),
-  routes,
+  history: createWebHistory(process.env.BASE_URL),
+  routes
 });
 
 export default router;
