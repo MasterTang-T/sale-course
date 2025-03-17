@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-1/2 right-6 z-40">
+  <div class="fixed bottom-10 right-6 z-40">
     <button
       @click="showModal = true"
       class="group flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"

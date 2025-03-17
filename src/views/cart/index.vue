@@ -1,8 +1,8 @@
 <template>
-	<div class="container mx-auto px-6 py-12">
+	<div class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
 		<!-- 页面标题 -->
-		<div class="flex justify-between items-center mb-8">
-			<div class="flex items-center space-x-4">
+		<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4">
+			<div class="flex flex-wrap items-center gap-2 sm:gap-4">
 				<h1 class="text-2xl font-bold text-gray-800">购物车</h1>
 				<router-link
 					to="/frontend"
@@ -12,24 +12,24 @@
 					<el-icon class="text-lg"><House /></el-icon>
 				</router-link>
 			</div>
-			<div class="flex items-center space-x-4">
+			<div class="flex flex-wrap items-center gap-2 sm:gap-4">
 				<button
 					@click="handleSelectAll"
-					class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+					class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
 				>
 					{{ isAllSelected ? '取消全选' : '全选' }}
 				</button>
 				<button
 					v-if="selectedItems.length > 0"
 					@click="handleCopySelected"
-					class="px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90"
+					class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90"
 				>
 					复制选中商品名称
 				</button>
 				<button
 					v-if="selectedItems.length > 0"
 					@click="handleDeleteSelected"
-					class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
+					class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm font-medium text-white bg-red-500 rounded-md hover:bg-red-600"
 				>
 					删除选中
 				</button>
@@ -37,11 +37,11 @@
 		</div>
 
 		<!-- 购物车为空时的提示 -->
-		<div v-if="cartItems.length === 0" class="text-center py-16">
+		<div v-if="cartItems.length === 0" class="text-center py-12 sm:py-16">
 			<div class="text-gray-400 mb-4">
-				<i class="fas fa-shopping-cart text-6xl"></i>
+				<i class="fas fa-shopping-cart text-5xl sm:text-6xl"></i>
 			</div>
-			<p class="text-gray-500 text-lg">购物车是空的</p>
+			<p class="text-gray-500 text-base sm:text-lg">购物车是空的</p>
 			<router-link
 				to="/frontend"
 				class="inline-block mt-4 px-6 py-2 text-primary hover:text-primary/90"
@@ -55,7 +55,7 @@
 			<div
 				v-for="item in cartItems"
 				:key="item.goodsId"
-				class="bg-white rounded-lg shadow-sm p-6 flex items-center space-x-4 animate-fade-in"
+				class="bg-white rounded-lg shadow-sm p-6 flex flex-wrap items-center gap-2 sm:gap-4 animate-fade-in"
 			>
 				<input
 					type="checkbox"
@@ -65,7 +65,7 @@
 				>
 				<div class="flex-1">
 					<h3 class="text-lg font-medium text-gray-900">{{ item.goodsName }}</h3>
-					<div class="mt-1 flex items-center space-x-4">
+					<div class="mt-1 flex flex-wrap items-center gap-2 sm:gap-4">
 						<template v-if="item.price > 0">
 							<span class="text-primary font-medium">¥{{ item.price }}</span>
 						</template>
